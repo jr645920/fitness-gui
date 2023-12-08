@@ -23,7 +23,7 @@ Make sure you have the following installed on your machine:
 
 - [Sqlite](https://www.sqlite.org/download.html)
 
-- [Sqlite for Visual Studio .NET](https://learn.microsoft.com/en-us/dotnet/standard/data/sqlite/?tabs=netcore-cli)
+- [Sqlite Tools for Visual Studio .NET](https://learn.microsoft.com/en-us/dotnet/standard/data/sqlite/?tabs=netcore-cli)
 
 ## Getting Started
 
