@@ -21,9 +21,9 @@ Make sure you have the following installed on your machine:
 
 - [MediaPlayer Class](https://learn.microsoft.com/en-us/uwp/api/windows.media.playback.mediaplayer?view=winrt-22621)
 
-- [Sqlite] (https://www.sqlite.org/download.html)
+- [Sqlite](https://www.sqlite.org/download.html)
 
-- [Sqlite for Visual Studio .NET] (https://learn.microsoft.com/en-us/dotnet/standard/data/sqlite/?tabs=netcore-cli)
+- [Sqlite for Visual Studio .NET](https://learn.microsoft.com/en-us/dotnet/standard/data/sqlite/?tabs=netcore-cli)
 
 ## Getting Started
 
