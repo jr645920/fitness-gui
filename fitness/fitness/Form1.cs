@@ -92,6 +92,7 @@ namespace fitness
             dataGridView1.DataSource = dt;
 
             con.Close();
+
         }
 
         private void rsBtn_Click(object sender, EventArgs e)
@@ -224,7 +225,31 @@ namespace fitness
             adapter.Fill(dt);
             dataGridView1.DataSource = dt;
 
+            if (id == 1)
+            {
+                axWindowsMediaPlayer1.Visible = true;
+                //add other media player stuff here 
+
+                string tmp =
+                    "SELECT video " +
+                    "FROM lift " +
+                    "WHERE lift_name=@tb2";
+
+                cmd.CommandText = tmp;
+                var reader = cmd.ExecuteReader();
+
+                string video = "";
+                while (reader.Read())
+                {
+                    video += reader[0].ToString();
+                }
+                reader.Close();
+
+                axWindowsMediaPlayer1.URL = video;
+            }
+
             con.Close();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
