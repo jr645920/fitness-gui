@@ -69,6 +69,12 @@ namespace fitness
             dataGridView1.DataSource = dt;
 
             con.Close();
+
+            //hiding media player if open
+            if (axWindowsMediaPlayer1.Visible)
+            {
+                axWindowsMediaPlayer1.Visible = false;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -92,6 +98,12 @@ namespace fitness
             dataGridView1.DataSource = dt;
 
             con.Close();
+
+            //hiding media player if open
+            if (axWindowsMediaPlayer1.Visible)
+            {
+                axWindowsMediaPlayer1.Visible = false;
+            }
 
         }
 
@@ -170,6 +182,12 @@ namespace fitness
             dataGridView1.DataSource = dt;
 
             con.Close();
+
+            //hiding media player if open
+            if (axWindowsMediaPlayer1.Visible)
+            {
+                axWindowsMediaPlayer1.Visible = false;
+            }
         }
 
         private void lsBtn_Click(object sender, EventArgs e)
@@ -247,6 +265,10 @@ namespace fitness
 
                 axWindowsMediaPlayer1.URL = video;
             }
+            else
+            {
+                axWindowsMediaPlayer1.Visible= false;
+            }
 
             con.Close();
 
@@ -311,6 +333,12 @@ namespace fitness
             cmd.ExecuteNonQuery();
 
             con.Close();
+
+            //hiding media player if open
+            if (axWindowsMediaPlayer1.Visible)
+            {
+                axWindowsMediaPlayer1.Visible = false;
+            }
         }
 
         private void addIsInBtn_Click(object sender, EventArgs e)
@@ -359,6 +387,12 @@ namespace fitness
             cmd.ExecuteNonQuery();
 
             con.Close();
+
+            //hiding media player if open
+            if (axWindowsMediaPlayer1.Visible)
+            {
+                axWindowsMediaPlayer1.Visible = false;
+            }
         }
 
         private void addLiftBtn_Click(object sender, EventArgs e)
@@ -373,16 +407,23 @@ namespace fitness
             {
                 if (newLiftDes.Text.Length > 0)
                 {
+                    if (newVideo.Text.Length > 0)
+                    {
+                        queryAdd =
+                        "INSERT INTO lift VALUES ( " +
+                        "@liftName, @liftDes, @Video " +
+                        ")";
+                    }
                     queryAdd =
                         "INSERT INTO lift VALUES ( " +
-                        "@liftName, @liftDes, null, null " +
+                        "@liftName, @liftDes, null " +
                         ")";
                 }
                 else
                 {
                     queryAdd =
                         "INSERT INTO lift VALUES (" +
-                        "@liftName, null, null, null" +
+                        "@liftName, null, null" +
                         ")";
                 }
             }
@@ -394,6 +435,7 @@ namespace fitness
             SQLiteCommand cmd = new SQLiteCommand(queryAdd, con);
             cmd.Parameters.Add(new SQLiteParameter("@liftName", newLiftName.Text));
             cmd.Parameters.Add(new SQLiteParameter("@liftDes", newLiftDes.Text));
+            cmd.Parameters.Add(new SQLiteParameter("@Video", newVideo.Text));
 
             cmd.ExecuteNonQuery();
             
@@ -411,6 +453,19 @@ namespace fitness
             }
 
             con.Close();
+
+            //hiding media player if open
+            if (axWindowsMediaPlayer1.Visible)
+            {
+                axWindowsMediaPlayer1.Visible = false;
+            }
+        }
+
+        private void btnPics_Click(object sender, EventArgs e)
+        {
+            //switch to form2
+            Form2 f2 = new Form2();
+            f2.ShowDialog();
         }
     }
 

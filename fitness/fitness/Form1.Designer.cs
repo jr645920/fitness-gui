@@ -67,6 +67,9 @@
             this.addRoutineBtn = new System.Windows.Forms.Button();
             this.addIsInBtn = new System.Windows.Forms.Button();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.label17 = new System.Windows.Forms.Label();
+            this.newVideo = new System.Windows.Forms.TextBox();
+            this.btnPics = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
@@ -84,7 +87,7 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(108, 208);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -244,7 +247,7 @@
             // 
             // checkedListBox1
             // 
-            this.checkedListBox1.Location = new System.Drawing.Point(17, 740);
+            this.checkedListBox1.Location = new System.Drawing.Point(15, 801);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(298, 142);
             this.checkedListBox1.TabIndex = 0;
@@ -253,7 +256,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(14, 720);
+            this.label7.Location = new System.Drawing.Point(12, 781);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(339, 17);
             this.label7.TabIndex = 18;
@@ -408,7 +411,7 @@
             // 
             // addLiftBtn
             // 
-            this.addLiftBtn.Location = new System.Drawing.Point(17, 899);
+            this.addLiftBtn.Location = new System.Drawing.Point(15, 960);
             this.addLiftBtn.Name = "addLiftBtn";
             this.addLiftBtn.Size = new System.Drawing.Size(87, 46);
             this.addLiftBtn.TabIndex = 36;
@@ -446,11 +449,43 @@
             this.axWindowsMediaPlayer1.TabIndex = 39;
             this.axWindowsMediaPlayer1.Visible = false;
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(15, 720);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(294, 17);
+            this.label17.TabIndex = 41;
+            this.label17.Text = "Enter path of video mp4 file (with .mp4)";
+            // 
+            // newVideo
+            // 
+            this.newVideo.Font = new System.Drawing.Font("Comic Sans MS", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newVideo.Location = new System.Drawing.Point(18, 739);
+            this.newVideo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.newVideo.Name = "newVideo";
+            this.newVideo.Size = new System.Drawing.Size(270, 30);
+            this.newVideo.TabIndex = 40;
+            // 
+            // btnPics
+            // 
+            this.btnPics.Location = new System.Drawing.Point(732, 26);
+            this.btnPics.Name = "btnPics";
+            this.btnPics.Size = new System.Drawing.Size(183, 51);
+            this.btnPics.TabIndex = 42;
+            this.btnPics.Text = "Progress Pics";
+            this.btnPics.UseVisualStyleBackColor = true;
+            this.btnPics.Click += new System.EventHandler(this.btnPics_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1569, 1046);
+            this.Controls.Add(this.btnPics);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.newVideo);
             this.Controls.Add(this.axWindowsMediaPlayer1);
             this.Controls.Add(this.addIsInBtn);
             this.Controls.Add(this.addRoutineBtn);
@@ -540,6 +575,9 @@
         private System.Windows.Forms.Button addRoutineBtn;
         private System.Windows.Forms.Button addIsInBtn;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox newVideo;
+        private System.Windows.Forms.Button btnPics;
     }
 }
 
