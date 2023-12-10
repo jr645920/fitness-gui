@@ -464,7 +464,7 @@ namespace fitness
         private void btnPics_Click(object sender, EventArgs e)
         {
             //switch to form2
-            Form2 f2 = new Form2();
+            s f2 = new s();
             f2.ShowDialog();
         }
     }

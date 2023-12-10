@@ -1,6 +1,6 @@
 ﻿namespace fitness
 {
-    partial class Form2
+    partial class s
     {
         /// <summary>
         /// Required designer variable.
@@ -29,45 +29,54 @@
         private void InitializeComponent()
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.rNumber = new System.Windows.Forms.TextBox();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnPrev = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnRoutineNumber = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnBrowse = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(249, 49);
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Location = new System.Drawing.Point(318, 48);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(247, 222);
+            this.pictureBox1.Size = new System.Drawing.Size(309, 400);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // textBox1
+            // rNumber
             // 
-            this.textBox1.Location = new System.Drawing.Point(94, 181);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(84, 26);
-            this.textBox1.TabIndex = 1;
+            this.rNumber.Location = new System.Drawing.Point(66, 182);
+            this.rNumber.Name = "rNumber";
+            this.rNumber.Size = new System.Drawing.Size(84, 26);
+            this.rNumber.TabIndex = 1;
             // 
-            // button1
+            // btnNext
             // 
-            this.button1.Location = new System.Drawing.Point(378, 287);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(57, 37);
-            this.button1.TabIndex = 2;
-            this.button1.Text = ">";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnNext.Location = new System.Drawing.Point(504, 472);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(57, 37);
+            this.btnNext.TabIndex = 2;
+            this.btnNext.Text = ">";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
-            // button2
+            // btnPrev
             // 
-            this.button2.Location = new System.Drawing.Point(315, 287);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(57, 37);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "<";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnPrev.Location = new System.Drawing.Point(441, 472);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(57, 37);
+            this.btnPrev.TabIndex = 3;
+            this.btnPrev.Text = "<";
+            this.btnPrev.UseVisualStyleBackColor = true;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
             // 
             // label1
             // 
@@ -79,17 +88,50 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Routine Number:";
             // 
-            // Form2
+            // btnRoutineNumber
+            // 
+            this.btnRoutineNumber.Location = new System.Drawing.Point(156, 176);
+            this.btnRoutineNumber.Name = "btnRoutineNumber";
+            this.btnRoutineNumber.Size = new System.Drawing.Size(64, 39);
+            this.btnRoutineNumber.TabIndex = 5;
+            this.btnRoutineNumber.Text = "view";
+            this.btnRoutineNumber.UseVisualStyleBackColor = true;
+            this.btnRoutineNumber.Click += new System.EventHandler(this.btnRoutineNumber_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(32, 227);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(222, 22);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Add image to the routine:";
+            // 
+            // btnBrowse
+            // 
+            this.btnBrowse.Location = new System.Drawing.Point(94, 266);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(98, 43);
+            this.btnBrowse.TabIndex = 7;
+            this.btnBrowse.Text = "browse";
+            this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            // 
+            // s
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1002, 678);
+            this.Controls.Add(this.btnBrowse);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnRoutineNumber);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnPrev);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.rNumber);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "Form2";
+            this.Name = "s";
             this.Text = "Form2";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -98,11 +140,13 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox rNumber;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnPrev;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnRoutineNumber;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
