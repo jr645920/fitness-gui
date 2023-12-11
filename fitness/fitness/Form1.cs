@@ -19,7 +19,7 @@ namespace fitness
         {
             InitializeComponent();
 
-            // Sets up the initial objects in the CheckedListBox.
+            // Sets up the objects in the CheckedListBox.
             string[] muscleGroups = { 
                 "biceps", 
                 "triceps", 
@@ -54,7 +54,10 @@ namespace fitness
         private void button1_Click(object sender, EventArgs e)
         {
             ///connection object
-            SQLiteConnection con = new SQLiteConnection(@"data source=C:/Users/johnn/.vscode/cs4620/final/fitness/application.db");
+            string applicationDirectory = System.Windows.Forms.Application.ExecutablePath;
+            Console.WriteLine(applicationDirectory);
+            SQLiteConnection con = new SQLiteConnection(@"data source=" + applicationDirectory + "/../../../../application.db");
+
             con.Open();
             ///command object
             string query1 = "SELECT routine_number, routine_name FROM routine";
@@ -80,7 +83,9 @@ namespace fitness
         private void button2_Click(object sender, EventArgs e)
         {
             ///connection object
-            SQLiteConnection con = new SQLiteConnection(@"data source=C:/Users/johnn/.vscode/cs4620/final/fitness/application.db");
+            string applicationDirectory = System.Windows.Forms.Application.ExecutablePath;
+            Console.WriteLine(applicationDirectory);
+            SQLiteConnection con = new SQLiteConnection(@"data source=" + applicationDirectory + "/../../../../application.db");
             con.Open();
             ///command object
             string query1 = 
@@ -117,7 +122,9 @@ namespace fitness
             int id = (int)comboBox2.SelectedValue;
 
             //sqlite conection
-            SQLiteConnection con = new SQLiteConnection(@"data source=C:/Users/johnn/.vscode/cs4620/final/fitness/application.db");
+            string applicationDirectory = System.Windows.Forms.Application.ExecutablePath;
+            Console.WriteLine(applicationDirectory);
+            SQLiteConnection con = new SQLiteConnection(@"data source=" + applicationDirectory + "/../../../../application.db");
             con.Open();
 
             switch (id)
@@ -200,7 +207,9 @@ namespace fitness
             int id = (int)comboBox1.SelectedValue;
 
             //sqlite conection
-            SQLiteConnection con = new SQLiteConnection(@"data source=C:/Users/johnn/.vscode/cs4620/final/fitness/application.db");
+            string applicationDirectory = System.Windows.Forms.Application.ExecutablePath;
+            Console.WriteLine(applicationDirectory);
+            SQLiteConnection con = new SQLiteConnection(@"data source=" + applicationDirectory + "/../../../../application.db");
             con.Open();
 
             switch (id)
@@ -292,7 +301,9 @@ namespace fitness
         private void addRoutineBtn_Click(object sender, EventArgs e)
         {
             ///connection object
-            SQLiteConnection con = new SQLiteConnection(@"data source=C:/Users/johnn/.vscode/cs4620/final/fitness/application.db");
+            string applicationDirectory = System.Windows.Forms.Application.ExecutablePath;
+            Console.WriteLine(applicationDirectory);
+            SQLiteConnection con = new SQLiteConnection(@"data source=" + applicationDirectory + "/../../../../application.db");
             con.Open();
             
             string queryMax = 
@@ -344,7 +355,9 @@ namespace fitness
         private void addIsInBtn_Click(object sender, EventArgs e)
         {
             ///connection object
-            SQLiteConnection con = new SQLiteConnection(@"data source=C:/Users/johnn/.vscode/cs4620/final/fitness/application.db");
+            string applicationDirectory = System.Windows.Forms.Application.ExecutablePath;
+            Console.WriteLine(applicationDirectory);
+            SQLiteConnection con = new SQLiteConnection(@"data source=" + applicationDirectory + "/../../../../application.db");
             con.Open();
 
             string queryAdd = "";
@@ -399,7 +412,9 @@ namespace fitness
         {
             //add to lift and add to muscle_group
             ///connection object
-            SQLiteConnection con = new SQLiteConnection(@"data source=C:/Users/johnn/.vscode/cs4620/final/fitness/application.db");
+            string applicationDirectory = System.Windows.Forms.Application.ExecutablePath;
+            Console.WriteLine(applicationDirectory);
+            SQLiteConnection con = new SQLiteConnection(@"data source=" + applicationDirectory + "/../../../../application.db");
             con.Open();
             
             string queryAdd = "";
@@ -466,6 +481,192 @@ namespace fitness
             //switch to form2
             s f2 = new s();
             f2.ShowDialog();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            string applicationDirectory = System.Windows.Forms.Application.ExecutablePath;
+            Console.WriteLine(applicationDirectory);
+            SQLiteConnection con = new SQLiteConnection(@"data source=" + applicationDirectory + "/../../../../application.db");
+            con.Open();
+
+            string queryUpdate = "";
+            string queryUpdate2 = "";
+            string queryDelete = "";
+            SQLiteCommand cmd = new SQLiteCommand(queryUpdate, con);
+            if (newLiftName.Text.Length > 0)
+            {
+                if (newLiftDes.Text.Length > 0)
+                {
+                    if (newVideo.Text.Length > 0)
+                    {
+                        queryUpdate =
+                        "UPDATE lift " +
+                        "SET description_l=@des, video=@path " +
+                        "WHERE lift_name=@lname";
+
+                        if (checkedListBox1.CheckedItems.Count > 0)
+                        {
+                            cmd.CommandText = queryUpdate;
+                            cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
+                            cmd.Parameters.Add(new SQLiteParameter("@des", newLiftDes.Text));
+                            cmd.Parameters.Add(new SQLiteParameter("@path", newVideo.Text));
+
+                            cmd.ExecuteNonQuery();
+
+                            //delete existing
+                            queryDelete =
+                                    "DELETE FROM muscle_group WHERE lift_name=@lname";
+                            cmd.CommandText = queryDelete;
+                            cmd.ExecuteNonQuery();
+
+                            for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
+                            {
+                                //add each muscle group
+                                queryUpdate2 =
+                                    "INSERT INTO muscle_group VALUES ( " +
+                                    "@lname, @groups " +
+                                    ")";
+                                cmd.CommandText = queryUpdate2;
+                                cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
+                                cmd.Parameters.Add(new SQLiteParameter("@groups", checkedListBox1.CheckedItems[i].ToString()));
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+                        else
+                        {
+                            cmd.CommandText = queryUpdate;
+                            cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
+                            cmd.Parameters.Add(new SQLiteParameter("@des", newLiftDes.Text));
+                            cmd.Parameters.Add(new SQLiteParameter("@path", newVideo.Text));
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    else
+                    {
+                        queryUpdate =
+                            "UPDATE lift " +
+                            "SET description_l=@des " +
+                            "WHERE lift_name=@lname";
+                        if (checkedListBox1.CheckedItems.Count > 0)
+                        {
+                            cmd.CommandText = queryUpdate;
+                            cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
+                            cmd.Parameters.Add(new SQLiteParameter("@des", newLiftDes.Text));
+                            cmd.Parameters.Add(new SQLiteParameter("@path", newVideo.Text));
+
+                            cmd.ExecuteNonQuery();
+
+                            //delete existing
+                            queryDelete =
+                                    "DELETE FROM muscle_group WHERE lift_name=@lname";
+                            cmd.CommandText = queryDelete;
+                            cmd.ExecuteNonQuery();
+
+                            for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
+                            {
+                                //add each muscle group
+                                queryUpdate2 =
+                                    "INSERT INTO muscle_group VALUES ( " +
+                                    "@lname, @groups " +
+                                    ")";
+                                cmd.CommandText = queryUpdate2;
+                                cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
+                                cmd.Parameters.Add(new SQLiteParameter("@groups", checkedListBox1.CheckedItems[i].ToString()));
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+                        else
+                        {
+                            cmd.CommandText = queryUpdate;
+                            cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
+                            cmd.Parameters.Add(new SQLiteParameter("@des", newLiftDes.Text));
+                            cmd.Parameters.Add(new SQLiteParameter("@path", newVideo.Text));
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+                if(newVideo.Text.Length > 0 && newLiftDes.Text.Length == 0)
+                {
+                    queryUpdate =
+                        "UPDATE lift " +
+                        "SET video=@path " +
+                        "WHERE lift_name=@lname";
+                    if (checkedListBox1.CheckedItems.Count > 0)
+                    {
+                        cmd.CommandText = queryUpdate;
+                        cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
+                        cmd.Parameters.Add(new SQLiteParameter("@des", newLiftDes.Text));
+                        cmd.Parameters.Add(new SQLiteParameter("@path", newVideo.Text));
+
+                        cmd.ExecuteNonQuery();
+
+                        //delete existing
+                        queryDelete =
+                                "DELETE FROM muscle_group WHERE lift_name=@lname";
+                        cmd.CommandText = queryDelete;
+                        cmd.ExecuteNonQuery();
+
+                        for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
+                        {
+                            //add each muscle group
+                            queryUpdate2 =
+                                "INSERT INTO muscle_group VALUES ( " +
+                                "@lname, @groups " +
+                                ")";
+                            cmd.CommandText = queryUpdate2;
+                            cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
+                            cmd.Parameters.Add(new SQLiteParameter("@groups", checkedListBox1.CheckedItems[i].ToString()));
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    else
+                    {
+                        cmd.CommandText = queryUpdate;
+                        cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
+                        cmd.Parameters.Add(new SQLiteParameter("@des", newLiftDes.Text));
+                        cmd.Parameters.Add(new SQLiteParameter("@path", newVideo.Text));
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                if(newLiftDes.Text.Length == 0 && newVideo.Text.Length == 0)
+                {
+                    //delete existing
+                    queryDelete =
+                            "DELETE FROM muscle_group WHERE lift_name=@lname";
+                    cmd.CommandText = queryDelete;
+                    cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
+                    cmd.ExecuteNonQuery();
+
+                    for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
+                    {
+                        //add each muscle group
+                        queryUpdate2 =
+                            "INSERT INTO muscle_group VALUES ( " +
+                            "@lname, @groups " +
+                            ")";
+                        cmd.CommandText = queryUpdate2;
+                        cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
+                        cmd.Parameters.Add(new SQLiteParameter("@groups", checkedListBox1.CheckedItems[i].ToString()));
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            else
+            {
+                return;
+            }
+
+            con.Close();
+
+            //hiding media player if open
+            if (axWindowsMediaPlayer1.Visible)
+            {
+                axWindowsMediaPlayer1.Visible = false;
+            }
         }
     }
 

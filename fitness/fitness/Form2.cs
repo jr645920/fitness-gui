@@ -24,7 +24,9 @@ namespace fitness
 
         private void btnRoutineNumber_Click(object sender, EventArgs e)
         {
-            SQLiteConnection con = new SQLiteConnection(@"data source=C:/Users/johnn/.vscode/cs4620/final/fitness/application.db");
+            string applicationDirectory = System.Windows.Forms.Application.ExecutablePath;
+            Console.WriteLine(applicationDirectory);
+            SQLiteConnection con = new SQLiteConnection(@"data source=" + applicationDirectory + "/../../../../application.db");
             con.Open();
 
             string query1 = 
@@ -68,7 +70,9 @@ namespace fitness
                 "FROM routine " +
                 "WHERE routine_number=@rnumber";
 
-            SQLiteConnection con = new SQLiteConnection(@"data source=C:/Users/johnn/.vscode/cs4620/final/fitness/application.db");
+            string applicationDirectory = System.Windows.Forms.Application.ExecutablePath;
+            Console.WriteLine(applicationDirectory);
+            SQLiteConnection con = new SQLiteConnection(@"data source=" + applicationDirectory + "/../../../../application.db");
             con.Open();
             SQLiteCommand cmd = new SQLiteCommand(queryFind, con);
             cmd.Parameters.Add(new SQLiteParameter("@rnumber", rNumber.Text));
@@ -128,7 +132,9 @@ namespace fitness
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            SQLiteConnection con = new SQLiteConnection(@"data source=C:/Users/johnn/.vscode/cs4620/final/fitness/application.db");
+            string applicationDirectory = System.Windows.Forms.Application.ExecutablePath;
+            Console.WriteLine(applicationDirectory);
+            SQLiteConnection con = new SQLiteConnection(@"data source=" + applicationDirectory + "/../../../../application.db");
             con.Open();
 
             string query1 = 
@@ -199,7 +205,9 @@ namespace fitness
 
         private void btnPrev_Click(object sender, EventArgs e)
         {
-            SQLiteConnection con = new SQLiteConnection(@"data source=C:/Users/johnn/.vscode/cs4620/final/fitness/application.db");
+            string applicationDirectory = System.Windows.Forms.Application.ExecutablePath;
+            Console.WriteLine(applicationDirectory);
+            SQLiteConnection con = new SQLiteConnection(@"data source=" + applicationDirectory + "/../../../../application.db");
             con.Open();
 
             string query1 =

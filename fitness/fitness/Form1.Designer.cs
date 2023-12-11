@@ -70,6 +70,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.newVideo = new System.Windows.Forms.TextBox();
             this.btnPics = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
@@ -470,7 +471,7 @@
             // 
             // btnPics
             // 
-            this.btnPics.Location = new System.Drawing.Point(732, 26);
+            this.btnPics.Location = new System.Drawing.Point(732, 22);
             this.btnPics.Name = "btnPics";
             this.btnPics.Size = new System.Drawing.Size(183, 51);
             this.btnPics.TabIndex = 42;
@@ -478,11 +479,22 @@
             this.btnPics.UseVisualStyleBackColor = true;
             this.btnPics.Click += new System.EventHandler(this.btnPics_Click);
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(128, 960);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(118, 46);
+            this.btnUpdate.TabIndex = 43;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1569, 1046);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnPics);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.newVideo);
@@ -578,6 +590,7 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox newVideo;
         private System.Windows.Forms.Button btnPics;
+        private System.Windows.Forms.Button btnUpdate;
     }
 }
 
