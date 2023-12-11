@@ -668,6 +668,7 @@ namespace fitness
                 axWindowsMediaPlayer1.Visible = false;
             }
         }
+
     }
 
     class ComboItem

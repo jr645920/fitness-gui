@@ -224,9 +224,9 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(14, 588);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(212, 17);
+            this.label6.Size = new System.Drawing.Size(191, 17);
             this.label6.TabIndex = 16;
-            this.label6.Text = "Enter New Unique Lift Name";
+            this.label6.Text = "Enter a Unique Lift Name";
             // 
             // newLiftDes
             // 
@@ -456,9 +456,9 @@
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.Location = new System.Drawing.Point(15, 720);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(294, 17);
+            this.label17.Size = new System.Drawing.Size(295, 17);
             this.label17.TabIndex = 41;
-            this.label17.Text = "Enter path of video mp4 file (with .mp4)";
+            this.label17.Text = "Enter path of video with .mp4 (optional)";
             // 
             // newVideo
             // 
