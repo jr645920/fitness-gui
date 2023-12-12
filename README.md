@@ -42,5 +42,5 @@ Make sure you have the following installed on your machine:
 
 2. If you downloaded the .zip, make sure to unblock the Form1 and Form2 files. This can be done by right clicking on the .resx files, going to properties, and checking "unblock".
 
-3. In Visual Studio, open the solution in the file, press start and have fun!
+3. In Visual Studio, open the solution in the file (sometimes this needs to be done multiple times), and press start.
 
