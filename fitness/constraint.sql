@@ -1,0 +1,10 @@
+CREATE TRIGGER LIFT_CONSTRAINT
+BEFORE INSERT ON muscle_group
+    FOR EACH ROW
+    WHEN (NEW.lift_name!= (
+    SELECT lift_name 
+    FROM lift 
+    WHERE TRUE))
+BEGIN
+    SELECT RAISE(ABORT, 'NOT A VALID LIFT');
+END;

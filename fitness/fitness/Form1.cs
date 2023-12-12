@@ -387,20 +387,49 @@ namespace fitness
             {
                 queryAdd =
                 "INSERT INTO is_in VALUES ( " +
-                "@lift, @rep, 0, 0 " +
+                "@lift, @routine, 0, 0 " +
                 ")";
             }
 
-            SQLiteCommand cmd = new SQLiteCommand(queryAdd, con);
-            cmd.Parameters.Add(new SQLiteParameter("@lift", isInLift.Text));
-            cmd.Parameters.Add(new SQLiteParameter("@routine", isInRoutine.Text));
-            cmd.Parameters.Add(new SQLiteParameter("@weight", weightText.Text));
-            cmd.Parameters.Add(new SQLiteParameter("@rep", repText.Text));
+            //check that lift name is valid
+            string queryCheck =
+                "SELECT COUNT(*) " +
+                "FROM lift, routine  " +
+                "WHERE lift_name=@lname AND routine_number=@rnum";
 
-            cmd.ExecuteNonQuery();
+            SQLiteCommand cmd = new SQLiteCommand(queryCheck, con);
+            cmd.Parameters.Add(new SQLiteParameter("@lname", isInLift.Text));
+            cmd.Parameters.Add(new SQLiteParameter("@rnum", isInRoutine.Text));
+            cmd.CommandText = queryCheck;
+            string tmp = "";
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                tmp += reader[0].ToString();
+            }
+            reader.Close();
 
+            if (Int32.TryParse(tmp, out int count))
+            {
+                Console.WriteLine("String parsed.");
+            }
+            else
+            {
+                Console.WriteLine("String could not be parsed.");
+                return;
+            }
+
+            if (count > 0)
+            {
+                cmd.CommandText = queryAdd;
+                cmd.Parameters.Add(new SQLiteParameter("@lift", isInLift.Text));
+                cmd.Parameters.Add(new SQLiteParameter("@routine", isInRoutine.Text));
+                cmd.Parameters.Add(new SQLiteParameter("@weight", weightText.Text));
+                cmd.Parameters.Add(new SQLiteParameter("@rep", repText.Text));
+
+                cmd.ExecuteNonQuery();
+            }
             con.Close();
-
             //hiding media player if open
             if (axWindowsMediaPlayer1.Visible)
             {
@@ -429,17 +458,30 @@ namespace fitness
                         "@liftName, @liftDes, @Video " +
                         ")";
                     }
-                    queryAdd =
-                        "INSERT INTO lift VALUES ( " +
-                        "@liftName, @liftDes, null " +
-                        ")";
+                    else
+                    {
+                        queryAdd =
+                            "INSERT INTO lift VALUES ( " +
+                            "@liftName, @liftDes, null " +
+                            ")";
+                    }
                 }
                 else
                 {
-                    queryAdd =
-                        "INSERT INTO lift VALUES (" +
-                        "@liftName, null, null" +
+                    if (newVideo.Text.Length > 0)
+                    {
+                        queryAdd =
+                        "INSERT INTO lift VALUES ( " +
+                        "@liftName, null, @Video " +
                         ")";
+                    }
+                    else
+                    {
+                        queryAdd =
+                            "INSERT INTO lift VALUES ( " +
+                            "@liftName, null, null " +
+                            ")";
+                    }
                 }
             }
             else
@@ -493,6 +535,8 @@ namespace fitness
             string queryUpdate = "";
             string queryUpdate2 = "";
             string queryDelete = "";
+            string queryCheck = "";
+            string tmp = "";
             SQLiteCommand cmd = new SQLiteCommand(queryUpdate, con);
             if (newLiftName.Text.Length > 0)
             {
@@ -520,17 +564,44 @@ namespace fitness
                             cmd.CommandText = queryDelete;
                             cmd.ExecuteNonQuery();
 
-                            for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
+                            //check that lift name is valid
+                            queryCheck = 
+                                "SELECT COUNT(*) " +
+                                "FROM lift " +
+                                "WHERE lift_name=@lname";
+                            cmd.CommandText = queryCheck;
+                            var reader = cmd.ExecuteReader();
+                            while (reader.Read())
                             {
-                                //add each muscle group
-                                queryUpdate2 =
-                                    "INSERT INTO muscle_group VALUES ( " +
-                                    "@lname, @groups " +
-                                    ")";
-                                cmd.CommandText = queryUpdate2;
-                                cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
-                                cmd.Parameters.Add(new SQLiteParameter("@groups", checkedListBox1.CheckedItems[i].ToString()));
-                                cmd.ExecuteNonQuery();
+                                tmp += reader[0].ToString();
+                            }
+                            reader.Close();
+                            
+
+                            if (Int32.TryParse(tmp, out int count))
+                            {
+                                Console.WriteLine("String parsed.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("String could not be parsed.");
+                                return;
+                            }
+
+                            if (count > 0)
+                            {
+                                for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
+                                {
+                                    //add each muscle group
+                                    queryUpdate2 =
+                                        "INSERT INTO muscle_group VALUES ( " +
+                                        "@lname, @groups " +
+                                        ")";
+                                    cmd.CommandText = queryUpdate2;
+                                    cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
+                                    cmd.Parameters.Add(new SQLiteParameter("@groups", checkedListBox1.CheckedItems[i].ToString()));
+                                    cmd.ExecuteNonQuery();
+                                }
                             }
                         }
                         else
@@ -564,17 +635,44 @@ namespace fitness
                             cmd.CommandText = queryDelete;
                             cmd.ExecuteNonQuery();
 
-                            for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
+                            //check that lift name is valid
+                            queryCheck =
+                                "SELECT COUNT(*) " +
+                                "FROM lift " +
+                                "WHERE lift_name=@lname";
+                            cmd.CommandText = queryCheck;
+                            var reader = cmd.ExecuteReader();
+                            while (reader.Read())
                             {
-                                //add each muscle group
-                                queryUpdate2 =
-                                    "INSERT INTO muscle_group VALUES ( " +
-                                    "@lname, @groups " +
-                                    ")";
-                                cmd.CommandText = queryUpdate2;
-                                cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
-                                cmd.Parameters.Add(new SQLiteParameter("@groups", checkedListBox1.CheckedItems[i].ToString()));
-                                cmd.ExecuteNonQuery();
+                                tmp += reader[0].ToString();
+                            }
+                            reader.Close();
+
+
+                            if (Int32.TryParse(tmp, out int count))
+                            {
+                                Console.WriteLine("String parsed.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("String could not be parsed.");
+                                return;
+                            }
+
+                            if (count > 0)
+                            {
+                                for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
+                                {
+                                    //add each muscle group
+                                    queryUpdate2 =
+                                        "INSERT INTO muscle_group VALUES ( " +
+                                        "@lname, @groups " +
+                                        ")";
+                                    cmd.CommandText = queryUpdate2;
+                                    cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
+                                    cmd.Parameters.Add(new SQLiteParameter("@groups", checkedListBox1.CheckedItems[i].ToString()));
+                                    cmd.ExecuteNonQuery();
+                                }
                             }
                         }
                         else
@@ -609,17 +707,44 @@ namespace fitness
                         cmd.CommandText = queryDelete;
                         cmd.ExecuteNonQuery();
 
-                        for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
+                        //check that lift name is valid
+                        queryCheck =
+                            "SELECT COUNT(*) " +
+                            "FROM lift " +
+                            "WHERE lift_name=@lname";
+                        cmd.CommandText = queryCheck;
+                        var reader = cmd.ExecuteReader();
+                        while (reader.Read())
                         {
-                            //add each muscle group
-                            queryUpdate2 =
-                                "INSERT INTO muscle_group VALUES ( " +
-                                "@lname, @groups " +
-                                ")";
-                            cmd.CommandText = queryUpdate2;
-                            cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
-                            cmd.Parameters.Add(new SQLiteParameter("@groups", checkedListBox1.CheckedItems[i].ToString()));
-                            cmd.ExecuteNonQuery();
+                            tmp += reader[0].ToString();
+                        }
+                        reader.Close();
+
+
+                        if (Int32.TryParse(tmp, out int count))
+                        {
+                            Console.WriteLine("String parsed.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("String could not be parsed.");
+                            return;
+                        }
+
+                        if (count > 0)
+                        {
+                            for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
+                            {
+                                //add each muscle group
+                                queryUpdate2 =
+                                    "INSERT INTO muscle_group VALUES ( " +
+                                    "@lname, @groups " +
+                                    ")";
+                                cmd.CommandText = queryUpdate2;
+                                cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
+                                cmd.Parameters.Add(new SQLiteParameter("@groups", checkedListBox1.CheckedItems[i].ToString()));
+                                cmd.ExecuteNonQuery();
+                            }
                         }
                     }
                     else
@@ -641,17 +766,45 @@ namespace fitness
                     cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
                     cmd.ExecuteNonQuery();
 
-                    for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
+                    //check that lift name is valid
+                    queryCheck =
+                        "SELECT COUNT(*) " +
+                        "FROM lift " +
+                        "WHERE lift_name=@lname";
+
+                    cmd.CommandText = queryCheck;
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        //add each muscle group
-                        queryUpdate2 =
-                            "INSERT INTO muscle_group VALUES ( " +
-                            "@lname, @groups " +
-                            ")";
-                        cmd.CommandText = queryUpdate2;
-                        cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
-                        cmd.Parameters.Add(new SQLiteParameter("@groups", checkedListBox1.CheckedItems[i].ToString()));
-                        cmd.ExecuteNonQuery();
+                        tmp += reader[0].ToString();
+                    }
+                    reader.Close();
+
+
+                    if (Int32.TryParse(tmp, out int count))
+                    {
+                        Console.WriteLine("String parsed.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("String could not be parsed.");
+                        return;
+                    }
+
+                    if (count > 0)
+                    {
+                        for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
+                        {
+                            //add each muscle group
+                            queryUpdate2 =
+                                "INSERT INTO muscle_group VALUES ( " +
+                                "@lname, @groups " +
+                                ")";
+                            cmd.CommandText = queryUpdate2;
+                            cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
+                            cmd.Parameters.Add(new SQLiteParameter("@groups", checkedListBox1.CheckedItems[i].ToString()));
+                            cmd.ExecuteNonQuery();
+                        }
                     }
                 }
             }
