@@ -71,6 +71,12 @@
             this.newVideo = new System.Windows.Forms.TextBox();
             this.btnPics = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnRemoveLift = new System.Windows.Forms.Button();
+            this.btnRemoveRoutine = new System.Windows.Forms.Button();
+            this.btnRemoveIsIn = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.deleteRn = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
@@ -489,11 +495,77 @@
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
+            // btnRemoveLift
+            // 
+            this.btnRemoveLift.Location = new System.Drawing.Point(267, 960);
+            this.btnRemoveLift.Name = "btnRemoveLift";
+            this.btnRemoveLift.Size = new System.Drawing.Size(118, 46);
+            this.btnRemoveLift.TabIndex = 44;
+            this.btnRemoveLift.Text = "Remove";
+            this.btnRemoveLift.UseVisualStyleBackColor = true;
+            this.btnRemoveLift.Click += new System.EventHandler(this.btnRemoveLift_Click);
+            // 
+            // btnRemoveRoutine
+            // 
+            this.btnRemoveRoutine.Location = new System.Drawing.Point(447, 922);
+            this.btnRemoveRoutine.Name = "btnRemoveRoutine";
+            this.btnRemoveRoutine.Size = new System.Drawing.Size(118, 46);
+            this.btnRemoveRoutine.TabIndex = 45;
+            this.btnRemoveRoutine.Text = "Remove";
+            this.btnRemoveRoutine.UseVisualStyleBackColor = true;
+            this.btnRemoveRoutine.Click += new System.EventHandler(this.btnRemoveRoutine_Click);
+            // 
+            // btnRemoveIsIn
+            // 
+            this.btnRemoveIsIn.Location = new System.Drawing.Point(939, 849);
+            this.btnRemoveIsIn.Name = "btnRemoveIsIn";
+            this.btnRemoveIsIn.Size = new System.Drawing.Size(118, 46);
+            this.btnRemoveIsIn.TabIndex = 46;
+            this.btnRemoveIsIn.Text = "Remove";
+            this.btnRemoveIsIn.UseVisualStyleBackColor = true;
+            this.btnRemoveIsIn.Click += new System.EventHandler(this.btnRemoveIsIn_Click);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label18.Location = new System.Drawing.Point(441, 801);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(209, 31);
+            this.label18.TabIndex = 49;
+            this.label18.Text = "Delete Routine :";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(443, 846);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(174, 17);
+            this.label19.TabIndex = 48;
+            this.label19.Text = "Enter Routine Number:";
+            // 
+            // deleteRn
+            // 
+            this.deleteRn.Font = new System.Drawing.Font("Comic Sans MS", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteRn.Location = new System.Drawing.Point(446, 865);
+            this.deleteRn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.deleteRn.Name = "deleteRn";
+            this.deleteRn.Size = new System.Drawing.Size(270, 30);
+            this.deleteRn.TabIndex = 47;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1569, 1046);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.deleteRn);
+            this.Controls.Add(this.btnRemoveIsIn);
+            this.Controls.Add(this.btnRemoveRoutine);
+            this.Controls.Add(this.btnRemoveLift);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnPics);
             this.Controls.Add(this.label17);
@@ -591,6 +663,12 @@
         private System.Windows.Forms.TextBox newVideo;
         private System.Windows.Forms.Button btnPics;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnRemoveLift;
+        private System.Windows.Forms.Button btnRemoveRoutine;
+        private System.Windows.Forms.Button btnRemoveIsIn;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox deleteRn;
     }
 }
 

@@ -1,1 +1,1 @@
-DELETE FROM lift WHERE lift_name='vid2';
+DELETE FROM muscle_group WHERE lift_name='test3';

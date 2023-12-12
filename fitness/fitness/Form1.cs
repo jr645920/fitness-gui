@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Data.SQLite;
+using System.Security.Policy;
 //using System.Data.SqlClient;
 
 namespace fitness
@@ -822,6 +823,79 @@ namespace fitness
             }
         }
 
+        private void btnRemoveLift_Click(object sender, EventArgs e)
+        {
+            string query = "";
+            string query2 = "";
+            string query3 = "";
+            string applicationDirectory = System.Windows.Forms.Application.ExecutablePath;
+            SQLiteConnection con = new SQLiteConnection(@"data source=" + applicationDirectory + "/../../../../application.db");
+            con.Open();
+
+            if (newLiftName.Text.Length > 0)
+            {
+                query = "DELETE FROM lift WHERE lift_name=@lname";
+                SQLiteCommand cmd = new SQLiteCommand(query, con);
+                cmd.Parameters.Add(new SQLiteParameter("@lname", newLiftName.Text));
+                cmd.ExecuteNonQuery();
+
+                query2 = "DELETE FROM is_in WHERE lift_name=@lname";
+                cmd.CommandText= query2;
+                cmd.ExecuteNonQuery();
+
+                query3 = "DELETE FROM muscle_group WHERE lift_name=@lname";
+                cmd.CommandText = query3;
+                cmd.ExecuteNonQuery();
+            }
+
+            con.Close();
+        }
+
+        private void btnRemoveRoutine_Click(object sender, EventArgs e)
+        {
+            string query = "";
+            string query2 = "";
+            string query3 = "";
+            string applicationDirectory = System.Windows.Forms.Application.ExecutablePath;
+            SQLiteConnection con = new SQLiteConnection(@"data source=" + applicationDirectory + "/../../../../application.db");
+            con.Open();
+
+            if (deleteRn.Text.Length > 0)
+            {
+                query = "DELETE FROM routine WHERE routine_number=@rnum";
+                SQLiteCommand cmd = new SQLiteCommand(query, con);
+                cmd.Parameters.Add(new SQLiteParameter("@rnum", deleteRn.Text));
+                cmd.ExecuteNonQuery();
+
+                query2 = "DELETE FROM is_in WHERE routine_num=@rnum";
+                cmd.CommandText= query2;
+                cmd.ExecuteNonQuery();
+
+                query3 = "DELETE FROM progress WHERE routine_number=@rnum";
+                cmd.CommandText = query3;
+                cmd.ExecuteNonQuery();
+            }
+
+            con.Close();
+        }
+
+        private void btnRemoveIsIn_Click(object sender, EventArgs e)
+        {
+            string query = "";
+            string applicationDirectory = System.Windows.Forms.Application.ExecutablePath;
+            SQLiteConnection con = new SQLiteConnection(@"data source=" + applicationDirectory + "/../../../../application.db");
+            con.Open();
+
+            if (isInLift.Text.Length > 0)
+            {
+                query = "DELETE FROM is_in WHERE lift_name=@lname";
+                SQLiteCommand cmd = new SQLiteCommand(query, con);
+                cmd.Parameters.Add(new SQLiteParameter("@lname", isInLift.Text));
+                cmd.ExecuteNonQuery();
+            }
+
+            con.Close();
+        }
     }
 
     class ComboItem
